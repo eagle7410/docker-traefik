@@ -1,0 +1,32 @@
+
+defaultEntryPoints = ["http"]
+logLevel = "INFO"
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+
+ [entryPoints.foo]
+   address=":8080"
+   [entryPoints.foo.auth]
+     [entryPoints.foo.auth.basic]
+       users = [
+         "test:$2y$12$sE8lvCrzcPrjdOF8d.rTTu1IpuYLfuyQyhXOeSCM9yRwMghCNXBoC", #bcrypt(PASS)
+         "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0",
+       ]
+
+
+[api]
+entrypoint="foo"
+
+[docker]
+domain = "docker.local"
+watch = true
+
+[accessLog]
+filePath = "/var/log/access.log"
+format = "json"
+# Buffering Size | Optional | Default: 0
+# Number of access log lines to process in a buffered way.
+bufferingSize = 10000
+

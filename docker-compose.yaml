@@ -1,0 +1,18 @@
+version: "3.2"
+services:
+  whoami:
+    image: containous/whoami # A container that exposes an API to show its IP address
+    labels:
+      - "traefik.frontend.rule=Host:whoami.docker.localhost"
+  traefik:
+    image: traefik:v1.7-alpine
+    labels:
+      - "traefik.frontend.rule=Host:dash.docker.localhost"
+      - "traefik.port=8080"
+    volumes:
+      - $PWD/traefik.toml:/etc/traefik/traefik.toml
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./access.log:/var/log/access.log
+    ports:
+      - 80:80
+      - 433:433
