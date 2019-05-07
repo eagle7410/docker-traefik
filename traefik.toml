@@ -11,6 +11,7 @@ logLevel = "INFO"
    [entryPoints.foo.auth]
      [entryPoints.foo.auth.basic]
        users = [
+         "IgorDev:$2y$12$FM.oC/upKTuocIXoY8PwLeqFdfNqUlFA7WYeP8qXwO7g5YNjyHBOm", #bcrypt(PASS)
          "test:$2y$12$sE8lvCrzcPrjdOF8d.rTTu1IpuYLfuyQyhXOeSCM9yRwMghCNXBoC", #bcrypt(PASS)
          "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0",
        ]
